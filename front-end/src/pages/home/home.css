@@ -1,0 +1,86 @@
+.home {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro {
+  max-width: 700px;
+  text-align: center;
+}
+
+.homeTitle {
+  font-weight: var(--font-bold);
+  font-size: 3.75rem;
+  line-height: 4.75rem;
+  margin-bottom: 2.75rem;
+}
+
+.homeSubtitle {
+  font-size: 1.25rem;
+  color: #fff;
+  font-weight: var(--font-normal);
+}
+
+.description {
+  margin-top: 3.9375rem;
+  margin-bottom: 5.75rem;
+  font-weight: var(--font-normal);
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+.myName,
+.otherTitle {
+  color: var(--second-color);
+  font-weight: var(--font-bold);
+}
+
+.otherTitle {
+  font-style: italic;
+}
+
+.recommenderButton {
+  display: flex;
+  column-gap: 1.75rem;
+  margin: 1.5rem 0;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.firstButton {
+  background-color: var(--second-color);
+}
+
+.secondButton {
+  border: 3px solid var(--second-color);
+}
+
+.button {
+  display: flex;
+  font-size: 1rem;
+  font-weight: var(--font-bold);
+  align-items: center;
+}
+
+.musicButton {
+  color: var(--first-color);
+}
+
+.movieButton {
+  color: var(--third-color);
+}
+
+.movieImg,
+.musicImg {
+  width: 2rem;
+  margin-left: 1rem;
+}
