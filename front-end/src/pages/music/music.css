@@ -1,0 +1,28 @@
+.cardContainer {
+  grid-template-rows: repeat(3, max-content);
+}
+
+.musicCard {
+  display: grid;
+  grid-template-columns: 1fr 80fr 8fr;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.musicLine {
+  content: "";
+  height: 4px;
+  background-color: var(--second-color);
+}
+
+.musicCardImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 1rem;
+}
+
+.musicArtist {
+  color: var(--second-color);
+  font-weight: var(--font-bold);
+}

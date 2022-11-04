@@ -1,0 +1,29 @@
+.cardContainer {
+  grid-template-columns: repeat(3, max-content);
+  gap: 2rem;
+  justify-content: center;
+}
+
+.movieCard {
+  border: 1px solid var(--second-color);
+  padding: 1.25rem;
+  border-radius: 1rem;
+  width: 300px;
+}
+
+.movieCardImg {
+  width: 250px;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+}
+
+.movieTitleItem {
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-bold);
+  background-color: var(--second-color);
+  padding: 10px;
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  width: 250px;
+  color: var(--first-color);
+}
