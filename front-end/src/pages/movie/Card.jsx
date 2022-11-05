@@ -1,17 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import CardItem from "./CardItem";
-import { movieData } from "./Data";
+//import { movieData } from "./Data";
 
-const Card = () => {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    setMovies(movieData);
-  }, []);
-
+const Card = (props) => {
   return (
     <div className="cardContainer container grid">
-      {movies.map((item) => {
+      {props.output.map((item) => {
         return <CardItem item={item} key={item.id} />;
       })}
     </div>

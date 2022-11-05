@@ -1,7 +1,16 @@
 import React from "react";
 import "./research.css";
 
-const Research = ({ backgroundImg, titleString }) => {
+const Research = ({
+  backgroundImg,
+  titleString,
+  onClickMusic,
+  titleValue,
+  numberValue,
+  onChangeTitle,
+  onChangeNumber,
+  enabledButton,
+}) => {
   const addStyle = {
     backgroundImage: `url(${backgroundImg})`,
     backgroundSize: "cover",
@@ -10,26 +19,38 @@ const Research = ({ backgroundImg, titleString }) => {
   return (
     <div className="research" id="research">
       <div className="boxResearch formResearch" style={addStyle}>
-        <form action="" className="searchForm">
+        <div className="searchForm">
           <div className="searchForm-group">
             <div className="searchForm-div">
               <input
                 type="text"
+                value={titleValue}
                 className="searchForm-input"
                 placeholder={titleString}
+                onChange={onChangeTitle}
               />
             </div>
 
             <div className="searchForm-div">
               <input
                 type="number"
+                min={3}
+                max={12}
+                value={numberValue}
                 className="searchForm-input"
                 placeholder="Generate number..."
+                onChange={onChangeNumber}
               />
             </div>
           </div>
-          <button className="btnGenerate">Generate</button>
-        </form>
+          <button
+            className="btnGenerate"
+            onClick={onClickMusic}
+            disabled={!enabledButton}
+          >
+            Generate
+          </button>
+        </div>
       </div>
     </div>
   );
