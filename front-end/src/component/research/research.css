@@ -44,3 +44,53 @@
   font-size: 1.2rem;
   font-weight: var(--font-bold);
 }
+
+/*======================================= Responsive Part =======================================*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+  .searchForm-group {
+    grid-template-columns: 1fr;
+    row-gap: 0rem;
+  }
+
+  .searchForm-div {
+    margin-bottom: 1rem;
+    height: 3rem;
+  }
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+  .searchForm-input {
+    padding: 0.5rem 0.9rem;
+  }
+
+  .searchForm-div {
+    margin-bottom: 1rem;
+    height: 2.5rem;
+  }
+
+  .boxResearch {
+    height: 250px;
+    width: 350px;
+  }
+
+  .research {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btnGenerate {
+    padding: 0.8rem 2rem;
+    font-size: var(--small-font-size);
+  }
+  .titeBefore {
+    font-size: var(--normal-font-size);
+    margin-left: 2rem;
+  }
+}
+
+/* For small devices */
+@media screen and (max-width: 390px) {
+}

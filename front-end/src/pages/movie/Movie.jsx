@@ -10,9 +10,8 @@ const Movie = () => {
 
   const [movie, setMovie] = useState([]);
   const [recommender, setRecommender] = useState();
-  const [title, setTitle] = useState();
-  const [number, setNumber] = useState();
-  const [click, setClick] = useState(false);
+  const [title, setTitle] = useState("");
+  const [number, setNumber] = useState("");
 
   const isEnabled =
     title !== undefined &&
@@ -29,26 +28,46 @@ const Movie = () => {
 
     const resData = [];
 
-    for (const i in result.data) {
-      const title = result.data[i].title;
-      const year = result.data[i].years;
+    if (result.data !== "No movies found. Please check your input") {
+      for (const i in result.data) {
+        const title = result.data[i].title;
+        const year = result.data[i].years;
 
-      const resTMDB = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${title}&year=${year}`
-      );
+        const resTMDB = await axios
+          .get(
+            `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${title}&year=${year}`
+          )
+          .catch((error) => {
+            console.log("ERROR:: ", error.response.data);
+          });
 
-      resData.push({
-        id: resTMDB.data.results[0].id,
-        image: resTMDB.data.results[0].poster_path,
-        title: resTMDB.data.results[0].title,
-      });
+        if (resTMDB.data.results.length === 0) {
+          const arr = title.split(" ");
+
+          for (let i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+          }
+
+          const str2 = arr.join(" ");
+
+          resData.push({
+            id: result.data[i].id,
+            image: "",
+            title: str2,
+          });
+        } else {
+          resData.push({
+            id: resTMDB.data.results[0].id,
+            image: resTMDB.data.results[0].poster_path,
+            title: resTMDB.data.results[0].title,
+          });
+        }
+      }
+
+      setMovie(resData);
     }
-
-    setMovie(resData);
-    setClick(true);
   };
 
-  console.log(click);
   return (
     <>
       <NavBar />
@@ -63,25 +82,6 @@ const Movie = () => {
           onChangeNumber={(e) => setNumber(e.target.value)}
           enabledButton={isEnabled}
         />
-        {/*<div>
-          <h1>Test</h1>
-          {movie ? (
-            movie === "No movies found. Please check your input" ? (
-              <div>
-                <p>Sorry we don't have this movie on the database</p>
-                <p>Try another movie !</p>
-              </div>
-            ) : (
-              movie.map((item) => {
-                return (
-                  <div key={item.id}>
-                    <p>{item.title}</p>
-                  </div>
-                );
-              })
-            )
-          ) : null}
-            </div>*/}
         {recommender ? (
           recommender === "No movies found. Please check your input" ? (
             <div>

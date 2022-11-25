@@ -32,3 +32,39 @@
 .titeBefore {
   margin-bottom: 1rem;
 }
+
+/*======================================= Responsive Part =======================================*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+  .cardContainer {
+    grid-template-columns: repeat(2, max-content);
+    gap: 1.25rem;
+  }
+  .movieCard {
+    padding: 1rem;
+  }
+
+  .movieCardImg {
+    margin-bottom: 0.75rem;
+  }
+
+  .movieTitleItem {
+    margin-bottom: 0.25rem;
+  }
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+  .cardContainer {
+    grid-template-columns: max-content;
+  }
+}
+
+@media screen and (max-width: 576px) {
+}
+/* For small devices */
+@media screen and (max-width: 390px) {
+  .movieCard {
+    width: 280px;
+  }
+}

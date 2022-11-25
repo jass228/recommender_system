@@ -1,10 +1,14 @@
 import React from "react";
 import "./navBar.css";
 import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
 
 const NavBar = () => {
   const activeLink = "active-link";
   const normalLink = "navLink";
+
+  const [toggle, showMenu] = useState(false);
+
   return (
     <header className="header">
       <nav className="nav container">
@@ -12,10 +16,11 @@ const NavBar = () => {
           R.S
         </Link>
 
-        <div className="navMenu">
+        <div className={toggle ? "navMenu show-menu" : "navMenu"}>
           <ul className="navList grid">
             <li className="navItem">
               <Link to="/" className="navLink">
+                <i className="uil uil-estate navIcon"></i>
                 Home
               </Link>
             </li>
@@ -27,7 +32,10 @@ const NavBar = () => {
                   isActive ? activeLink : normalLink
                 }
               >
-                Movie Recommender
+                <i className="uil uil-film navIcon"></i>
+                <p>
+                  Movie <span className="show">Recommender</span>
+                </p>
               </NavLink>
             </li>
 
@@ -38,10 +46,20 @@ const NavBar = () => {
                   isActive ? activeLink : normalLink
                 }
               >
-                Music Recommender
+                <i className="uil uil-music navIcon"></i>
+                <p>
+                  Music <span className="show">Recommender</span>
+                </p>
               </NavLink>
             </li>
           </ul>
+          <i
+            className="uil uil-times navClose"
+            onClick={() => showMenu(!toggle)}
+          ></i>
+        </div>
+        <div className="navToggle" onClick={() => showMenu(!toggle)}>
+          <i className="uil uil-apps"></i>
         </div>
       </nav>
     </header>

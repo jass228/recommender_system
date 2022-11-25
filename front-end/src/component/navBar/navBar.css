@@ -36,7 +36,108 @@
   transition: 0.3s;
 }
 
+.navIcon,
+.navClose,
+.navToggle {
+  display: none;
+}
+
 .active-link,
 .navLink:hover {
   color: var(--second-color);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For medium devices */
+@media screen and (max-width: 768px) {
+  .header {
+    top: initial;
+    bottom: 0;
+    background-color: #fff;
+  }
+
+  .nav {
+    height: var(--header-height);
+  }
+
+  .navMenu {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 2rem 1.5rem 4rem;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 1.5rem 1.5rem 0 0;
+    transition: 0.3s;
+  }
+
+  /* Show Menu */
+  .show-menu {
+    bottom: 0;
+  }
+
+  .navList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .navClose {
+    position: absolute;
+    right: 1.3rem;
+    bottom: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--title-color);
+  }
+
+  .navClose:hover {
+    color: var(--second-color);
+  }
+
+  .navToggle {
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+
+  .navIcon {
+    font-size: 1.2rem;
+  }
+
+  .navIcon,
+  .navClose,
+  .navToggle {
+    display: block;
+  }
+
+  .navLink,
+  .navLogo,
+  .navToggle,
+  .navClose {
+    color: var(--first-color);
+    margin: 20px;
+  }
+
+  .active-link {
+    font-size: var(--small-font-size);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .show {
+    display: none;
+  }
+}
+
+/* For small devices */
+@media screen and (max-width: 350px) {
+  .navMenu {
+    padding: 2rem 0.25rem 4rem;
+  }
+
+  .navList {
+    column-gap: 0;
+  }
 }

@@ -11,7 +11,7 @@ dataset = pd.read_csv('finalDataset.csv')
 movies = pd.read_csv('movies.csv')
 
 def getMovie(movieTitle, numberOfMovie):
-    movieList = movies[movies['title'].str.contains(movieTitle)]
+    movieList = movies[movies['title'].str.contains(movieTitle.lower())]
     if len(movieList):
         movieId = movieList.iloc[0]['movieId']
         movieId = dataset[dataset['movieId'] == movieId].index[0]
@@ -25,8 +25,8 @@ def getMovie(movieTitle, numberOfMovie):
             ID = word.find('(')
             title = word[:ID]
             year = word[word.find('(')+1:word.find(')')]
-            if title[-6:] == ', The ':
-                title = 'The ' + title[:-6]
+            if title[-6:] == ', the ':
+                title = 'the ' + title[:-6]
             recommend_frame.append({'id': int(idx.values[0]),'title':title,'distance':val[1], 'year': year})
         return recommend_frame
     else:
