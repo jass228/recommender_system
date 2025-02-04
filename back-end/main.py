@@ -6,7 +6,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 model = pickle.load(open('movieRecommenderModel.pkl', 'rb'))
-csr_data = pickle.load(open("csr_data.pkl", "rb"))
+data = pickle.load(open("data.pkl", "rb"))
 dataset = pd.read_csv('finalDataset.csv')
 movies = pd.read_csv('movies.csv')
 
@@ -15,7 +15,7 @@ def getMovie(movieTitle, numberOfMovie):
     if len(movieList):
         movieId = movieList.iloc[0]['movieId']
         movieId = dataset[dataset['movieId'] == movieId].index[0]
-        distances, indices = model.kneighbors(csr_data[movieId], n_neighbors=numberOfMovie+1)
+        distances, indices = model.kneighbors(data[movieId], n_neighbors=numberOfMovie+1)
         rec_movie_indices = sorted(list(zip(indices.squeeze().tolist(),distances.squeeze().tolist())),key=lambda x: x[1])[:0:-1]
         recommend_frame = []
         for val in rec_movie_indices:

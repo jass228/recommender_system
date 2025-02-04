@@ -2,3 +2,5 @@
 /recommenderEnv
 /.ipynb_checkpoints
 /Model
+.vscode/
+env/
