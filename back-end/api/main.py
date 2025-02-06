@@ -9,9 +9,9 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-base_path_data = os.path.join("..", "data")
+base_path_data = os.path.join("data")
 
-model_path = os.path.join("..", "model", "movieRecommenderModel.pkl")
+model_path = os.path.join("model", "movieRecommenderModel.pkl")
 data_path = os.path.join(base_path_data, "data.pkl")
 dataset_path = os.path.join(base_path_data, "finalDataset.csv")
 movies_path = os.path.join(base_path_data, "movies.csv")
