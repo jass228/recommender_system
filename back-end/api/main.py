@@ -1,16 +1,36 @@
+"""
+@author:
+Description:
+"""
+import os
 import pickle
 import pandas as pd
-from fastapi import FastAPI, Response
-from fastapi.encoders import jsonable_encoder
+from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-model = pickle.load(open('movieRecommenderModel.pkl', 'rb'))
-data = pickle.load(open("data.pkl", "rb"))
-dataset = pd.read_csv('finalDataset.csv')
-movies = pd.read_csv('movies.csv')
+base_path_data = os.path.join("..", "data")
+
+model_path = os.path.join("..", "model", "movieRecommenderModel.pkl")
+data_path = os.path.join(base_path_data, "data.pkl")
+dataset_path = os.path.join(base_path_data, "finalDataset.csv")
+movies_path = os.path.join(base_path_data, "movies.csv")
+
+model = pickle.load(open(model_path, 'rb'))
+data = pickle.load(open(data_path, "rb"))
+dataset = pd.read_csv(dataset_path)
+movies = pd.read_csv(movies_path)
 
 def getMovie(movieTitle, numberOfMovie):
+    """_summary_
+
+    Args:
+        movieTitle (_type_): _description_
+        numberOfMovie (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     movieList = movies[movies['title'].str.contains(movieTitle.lower())]
     if len(movieList):
         movieId = movieList.iloc[0]['movieId']
@@ -36,13 +56,22 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware, 
-    allow_credentials=True, 
+    allow_credentials=True,
     allow_origins=["*"], 
     allow_methods=["*"], 
     allow_headers=["*"]
 )
 
 @app.get("/")
-async def generate(prompt: str, num: int):
+def read_root(prompt: str, num: int):
+    """_summary_
+
+    Args:
+        prompt (str): _description_
+        num (int): _description_
+
+    Returns:
+        _type_: _description_
+    """
     result = getMovie(prompt, num)
     return JSONResponse(content=result, media_type="application/json")
