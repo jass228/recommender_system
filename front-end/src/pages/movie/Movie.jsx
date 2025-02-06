@@ -7,6 +7,7 @@ import axios from "axios";
 
 const Movie = () => {
   const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
+  const endpoint = process.env.REACT_APP_ENDPOINTS;
 
   const [movie, setMovie] = useState([]);
   const [recommender, setRecommender] = useState();
@@ -20,9 +21,7 @@ const Movie = () => {
     number !== "";
 
   const generate = async (prompt, num) => {
-    const result = await axios.get(
-      `http://127.0.0.1:8000/?prompt=${prompt}&num=${num}`
-    );
+    const result = await axios.get(`${endpoint}/?prompt=${prompt}&num=${num}`);
 
     setRecommender(result.data);
 
